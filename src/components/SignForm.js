@@ -385,7 +385,7 @@ function SignForm (){
         <Divider />
         <div>
             <Grid.Column>
-            <Button color = "pink" onClick={togglePerfectMatch}>FIND your perfect match?</Button>
+            <Button color = "pink" onClick={togglePerfectMatch}>FIND your perfect match</Button>
                 { showMatch ? <Container class="ui container" textAlign='justified'>{displayMatch()}</Container> : null }
             </Grid.Column>
             <br></br>

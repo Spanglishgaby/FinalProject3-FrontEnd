@@ -1,64 +1,30 @@
-import React, { useEffect, useState } from 'react';
-import Navbar from './Navbar';
-import HeaderPage from './HeaderPage'
-// import PageContainer from './PageContainer';
-import Reviews from "./Reviews";
-import SignForm from "./SignForm";
-import SignCollection from "./SignCollection";
-import ErrorPage from './Error';
-import 'semantic-ui-css/semantic.min.css'
+import React from 'react';
 import { Switch, Route} from 'react-router-dom';
-import Footer from './Footer';
-import Horoscope from './Horoscope';
-
+import LandingPage from "./LandingPage";
+import MainPage from "./MainPage";
+import 'semantic-ui-css/semantic.min.css'
 
 function App() {
-// testing
-  const [sunSign, setSunSign] = useState([])
-  const [reviews, setReviews] = useState([])
-  ////sunsign
-  useEffect(() => {
-    fetch('http://localhost:4000/sunsign')
-      .then(r => r.json())
-      .then(signData => setSunSign(signData))
-  }, [])
-////reviews
-  useEffect(() => {
-    fetch('http://localhost:4000/reviews')
-      .then(r => r.json())
-      .then(reviewData => setReviews(reviewData))
-  }, [])
+  // const [organizations, setOrganizations] = useState([]);
 
-  const addReview = (newReview) => {
-    setReviews([...reviews,  newReview])
-  }
+  // useEffect(() => {
+  //   fetch("http://localhost:9292/bubleteas")
+  //     .then((r) => r.json())
+  //     .then((organizations) => console.log(organizations));
+  // }, []);
 
   return (
-    <div>
-      <Navbar/>
-      <Switch>
-      <Route exact path = '/'>
-          <HeaderPage />
-          <SignCollection sunSign={sunSign} />
-        </Route>
-        <Route exact path = '/sunsign'>
-          <SignCollection sunSign={sunSign} />
-        </Route>
-        <Route path = '/horoscope'>
-          <Horoscope />
-        </Route>
-        <Route exact path = '/compatibility'>
-          <SignForm />
-        </Route>
-        <Route path = '/reviews'>
-          <Reviews reviews={reviews} addReview={addReview} />
-        </Route>
-        <Route path = "*">
-          <ErrorPage/>
-        </Route>
-    </Switch>
-    <Footer/>
-    </div>
+    <>
+      
+        <Switch>
+          <Route exact path = '/'>
+            <LandingPage />
+          </Route>
+          <Route exact path = '/mainpage'>
+            <MainPage  />
+          </Route>
+        </Switch>
+    </>
 
   );
 }
